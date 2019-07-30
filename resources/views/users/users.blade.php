@@ -1,4 +1,3 @@
-// ユーザがフォローしているユーザ一覧／ユーザのフォロワー一覧
 @if (count($users) > 0)
     <ul class="list-unstyled">
         @foreach ($users as $user)
@@ -15,6 +14,5 @@
             </li>
         @endforeach
     </ul>
-    // 10件ずつのページネーション
     {{ $users->render('pagination::bootstrap-4') }}
 @endif
