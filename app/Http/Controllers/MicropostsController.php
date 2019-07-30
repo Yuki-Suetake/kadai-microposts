@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controller;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
@@ -18,10 +18,10 @@ class MicropostsController extends Controller
                 'microposts' => $microposts,
             ];
         }
-        
         return view('welcome', $data);
     }
-    
+        
+
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -34,12 +34,12 @@ class MicropostsController extends Controller
 
         return back();
     }
-    
+
+
     public function destroy($id)
     {
         $micropost = \App\Micropost::find($id);
-        // 削除を実行する部分はif文で囲む
-        // 他社のMicrosoftを勝手に削除されないよう、ログインユーザのIDとMicropostの所有者のID(user_id)が一致しているかを調べるようにしている
+        
         if (\Auth::id() === $micropost->user_id) {
             $micropost->delete();
         }
