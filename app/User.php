@@ -24,7 +24,7 @@ class User extends Authenticatable
     
     public function followings() // 追加
     {
-        return $this->belongsToMany(User::class, 'user.follow', 'user_id', 'follow_id')->withTimestamps();
+        return $this->belongsToMany(User::class, 'user_follow', 'user_id', 'follow_id')->withTimestamps();
     }
     
     public function followers() // 追加
@@ -73,7 +73,7 @@ class User extends Authenticatable
     
     public function feed_microposts()
     {
-        $follow_user_ids = $this->followings()->plunk('users.id')->toArray();
+        $follow_user_ids = $this->followings()->pluck('users.id')->toArray();
         $follow_user_ids[] = $this->id;
         return Micropost::whereIn('user_id', $follow_user_ids);
     }
