@@ -2,4 +2,4 @@
 
 @section('content')
     @include('users.users', ['users' => $users])
-@endsectionlle
+@endsection
