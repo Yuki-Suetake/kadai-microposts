@@ -46,4 +46,15 @@ class MicropostsController extends Controller
 
         return back();
     }
+    
+        public function favorite($id)
+    {
+        $micropost = \App\Micropost::find($id);
+        
+        if (\Auth::id() === $micropost->user_id) {
+            $micropost->favorite();
+        }
+
+        return back();
+    }
 }
